@@ -1,0 +1,8 @@
+db.url=jdbc:postgresql://localhost:5432/java_ee_db?useSSL=false
+db.username=postgres
+db.password=DualSword163!@
+db.driverClassName=org.postgresql.Driver
+
+hibernate.show_sql=true
+hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect
+hibernate.hbm2ddl.auto = update

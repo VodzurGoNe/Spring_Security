@@ -1,27 +1,25 @@
 package org.gruzdov.spring.security.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+    private DataSource dataSource;
+
+    @Autowired
+    public void DataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        User.UserBuilder userBuilder = User.withDefaultPasswordEncoder();
-
-        auth.inMemoryAuthentication()
-                .withUser(userBuilder.username("zohan")
-                        .password("zohan")
-                        .roles("EMPLOYEE"))
-                .withUser(userBuilder.username("phantom")
-                        .password("phantom")
-                        .roles("HR"))
-                .withUser(userBuilder.username("temp")
-                        .password("temp")
-                        .roles("MANAGER", "HR"));
+        auth.jdbcAuthentication().dataSource(dataSource);
     }
 
     @Override
