@@ -13,7 +13,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Autowired
-    public void DataSource(DataSource dataSource) {
+    public MySecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

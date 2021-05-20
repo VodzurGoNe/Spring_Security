@@ -24,7 +24,7 @@ public class MyConfig {
     private Environment environment;
 
     @Autowired
-    public void Environment(Environment environment) {
+    public MyConfig(Environment environment) {
         this.environment = environment;
     }
 
